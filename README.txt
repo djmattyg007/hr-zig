@@ -14,4 +14,16 @@ To install it into a custom directory:
 
 zig build install -Drelease-small --prefix "${custom}/usr"
 
+To build just the binary, use the following command:
+
+zig build-exe src/hr.zig --library c --release-small --strip --single-threaded
+
+This will create a binary named 'hr' in the current working directory.
+
+Some Linux distributions (such as Arch Linux) compile zig in such a way that it
+does not produce static binaries by default. I've found that specifying the
+platform target gets around this issue. For example:
+
+zig build-exe src/hr.zig --library c --release-small --strip --single-threaded -target x86_64-linux
+
 This program is released into the public domain without any warranty.

@@ -6,7 +6,7 @@ pub fn build(b: *Builder) !void {
 
     const mode = b.standardReleaseOptions();
 
-    const exePath = [_][]const u8{"src", "main.zig"};
+    const exePath = [_][]const u8{"src", "hr.zig"};
     const exe = b.addExecutable("hr", try std.fs.path.join(allocator, &exePath));
     exe.setBuildMode(mode);
     exe.single_threaded = true;
