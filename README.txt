@@ -2,7 +2,7 @@ hr-zig
 
 This is a port of hr to zig, as a learning exercise for zig.
 
-You can find my C version of zig at here:
+You can find my C version of hr here:
 https://github.com/djmattyg007/hr
 
 To build hr from source, you're going to need zig 0.6.0. Then simply
