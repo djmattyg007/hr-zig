@@ -2,7 +2,7 @@ const ioctl = @cImport(@cInclude("sys/ioctl.h"));
 const std = @import("std");
 
 pub fn main() !void {
-    const stdout = std.io.getStdOut().outStream();
+    const stdout = std.io.getStdOut().writer();
 
     var lines: u64 = 1;
     var allocator = std.heap.page_allocator;
@@ -35,7 +35,7 @@ pub fn main() !void {
 
     var x: u64 = 0;
     while (x < lines) {
-        try stdout.print("{}\n", .{buf});
+        try stdout.print("{s}\n", .{buf});
         x += 1;
     }
 }
