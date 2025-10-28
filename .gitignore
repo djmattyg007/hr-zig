@@ -1,6 +1,4 @@
-/zig-out/
-/zig-cache/
-/src/zig-cache/
+.zig-cache/
 
 /hr
 *.o

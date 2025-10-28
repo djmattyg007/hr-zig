@@ -2,19 +2,26 @@ const ioctl = @cImport(@cInclude("sys/ioctl.h"));
 const std = @import("std");
 
 pub fn main() !void {
-    const stdout = std.io.getStdOut().writer();
+    var stdout_buffer: [1024]u8 = undefined;
+    var stdout_writer = std.fs.File.stdout().writer(&stdout_buffer);
+    const stdout = &stdout_writer.interface;
 
     var lines: u64 = 1;
     var allocator = std.heap.page_allocator;
 
-    var args = std.process.args();
+    var args = try std.process.ArgIterator.initWithAllocator(allocator);
+    // Not really necessary for a program that's expected to execute so quickly,
+    // but it's good practice and good habit. Probably more relevant for when
+    // parsing args in a dedicated function.
+    defer args.deinit();
+    // Skip the executable name
     _ = args.skip();
 
-    while (args.next(allocator)) |argItem| {
-        const arg = argItem catch std.process.exit(1);
-        lines = std.fmt.parseUnsigned(u64, arg, 10) catch |err| {
+    while (args.next()) |arg| {
+        lines = std.fmt.parseUnsigned(u64, arg, 10) catch {
             std.process.exit(1);
         };
+        // The CLI interface is really simple: 'hr <lines>'. Anything else is ignored.
         break;
     }
 
@@ -38,4 +45,6 @@ pub fn main() !void {
         try stdout.print("{s}\n", .{buf});
         x += 1;
     }
+
+    try stdout.flush();
 }
