@@ -1,0 +1,33 @@
+name: "CI"
+
+on:
+  push: ~
+  pull_request: ~
+
+jobs:
+  test:
+    strategy:
+      matrix:
+        os:
+          - "ubuntu-latest"
+          - "windows-latest"
+          - "macos-latest"
+        zig-version:
+          - "0.15.1"
+          - "0.15.2"
+          - "latest"
+    runs-on: "${{ matrix.os }}"
+    permissions:
+      contents: "write"
+    steps:
+      - name: "Checkout"
+        uses: "actions/checkout@v5.0.0@08c6903cd8c0fde910a37f88322edcfb5dd907a8"
+
+      - name: "Install Zig"
+        uses: "mlugg/setup-zig@v2.0.5@8d6198c65fb0feaa111df26e6b467fea8345e46f"
+        with:
+          version: "${{ matrix.zig-version }}"
+          cache-key: "${{ matrix.zig-version }}"
+
+      - name: "Build"
+        run: "zig build"
