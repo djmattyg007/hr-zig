@@ -1,0 +1,19 @@
+.{
+    .name = .hr,
+    .version = "1.1.0",
+    .dependencies = .{
+        .termsize = .{
+            .url = "git+https://github.com/djmattyg007/zig-termsize?ref=update-for-zig-0.15#55fa457b26b9c863a0f2c7ce5095624ac949c205",
+            .hash = "termsize-0.1.0-0mwB1lwVAADBgWi3-mt2GMuiw3tqmscsoVDh7Rzpxud6",
+        },
+    },
+    .fingerprint = 0x52f6e3400a3cfe29, // Changing this has security and trust implications.
+    .minimum_zig_version = "0.15.1",
+    .paths = .{
+        "src",
+        "build.zig",
+        "build.zig.zon",
+        "LICENSE.txt",
+        "README.txt",
+    },
+}

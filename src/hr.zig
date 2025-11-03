@@ -1,9 +1,10 @@
-const ioctl = @cImport(@cInclude("sys/ioctl.h"));
 const std = @import("std");
+const termsize = @import("termsize");
 
 pub fn main() !void {
+    const stdout_obj = std.fs.File.stdout();
     var stdout_buffer: [1024]u8 = undefined;
-    var stdout_writer = std.fs.File.stdout().writer(&stdout_buffer);
+    var stdout_writer = stdout_obj.writer(&stdout_buffer);
     const stdout = &stdout_writer.interface;
 
     var lines: u64 = 1;
@@ -25,11 +26,10 @@ pub fn main() !void {
         break;
     }
 
-    var term: ioctl.winsize = undefined;
-    _ = ioctl.ioctl(0, ioctl.TIOCGWINSZ, &term);
-    var cols: u32 = 80;
-    if (term.ws_col > 0) {
-        cols = term.ws_col;
+    var cols: u16 = 80;
+    const term = try termsize.termSize(stdout_obj);
+    if (term) |t| {
+        cols = t.width;
     }
 
     const char = '#';
