@@ -31,3 +31,6 @@ jobs:
 
       - name: "Build"
         run: "zig build"
+
+      - name: "Lint"
+        run: "zig fmt --check ."
