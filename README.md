@@ -1,0 +1,40 @@
+# hr-zig
+
+This is a port of hr to Zig, as a learning exercise for Zig.
+
+You can find my C version of hr here: https://github.com/djmattyg007/hr
+
+## Usage
+
+Using hr is incredibly straightforward and simple:
+
+```shell
+hr 5 # prints 5 lines
+hr # with no arguments, prints 1 line
+hr 10 five # prints 10 lines, all other arguments are ignored
+hr seventeen # anything other than a number as the first argument will result in an error and no output
+```
+
+## Compiling
+
+To build hr from source, you're going to need at least Zig v0.15.1. Then simply
+run the following command:
+
+```shell
+zig build install -Doptimize=ReleaseSmall
+```
+
+To install it into a custom directory (for packaging):
+
+```shell
+zig build install -Doptimize=ReleaseSmall --prefix "${custom}/usr"
+```
+
+I used to have instructions for building just the binary (with `zig build-exe`),
+but it seems like using it is simply infeasible once you take on dependencies.
+Just use `zig build` and look in the `zig-out` folder that gets created.
+
+## License
+
+This program is released into the public domain without any warranty. See
+[LICENSE.txt](./LICENSE.txt) for more information.
