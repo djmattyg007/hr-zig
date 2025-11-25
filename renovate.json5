@@ -1,0 +1,17 @@
+{
+  extends: [
+    "config:best-practices",
+    "schedule:weekends",
+  ],
+  packageRules: [
+    {
+      matchUpdateTypes: ["minor", "patch", "pin", "digest", "lockFileMaintenance"],
+      automerge: true,
+    },
+    {
+      groupName: "github-actions",
+      matchManagers: ["github-actions"],
+      separateMajorMinor: false,
+    },
+  ],
+}
