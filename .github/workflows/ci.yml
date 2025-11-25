@@ -5,7 +5,7 @@ on:
   pull_request: ~
 
 jobs:
-  test:
+  test-zig:
     strategy:
       matrix:
         os:
@@ -17,8 +17,7 @@ jobs:
           - "0.15.2"
           - "latest"
     runs-on: "${{ matrix.os }}"
-    permissions:
-      contents: "write"
+
     steps:
       - name: "Checkout"
         uses: "actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8" # v5.0.0
@@ -34,3 +33,35 @@ jobs:
 
       - name: "Lint"
         run: "zig fmt --check ."
+
+  test-goreleaser:
+    runs-on: "ubuntu-latest"
+
+    steps:
+      - name: "Checkout repository"
+        uses: "actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3" # v6.0.0
+
+      - name: "Lint config"
+        uses: "docker://ghcr.io/djmattyg007/jsonnet:0.21.0@sha256:4c38928922c5d532bfbc0fe9de1b06a013988f4495f35604a30ed4e96b5c51e5"
+        with:
+          args: "jsonnet-lint goreleaser.jsonnet"
+
+      - name: "Check config formatting"
+        uses: "docker://ghcr.io/djmattyg007/jsonnet:0.21.0@sha256:4c38928922c5d532bfbc0fe9de1b06a013988f4495f35604a30ed4e96b5c51e5"
+        with:
+          args: "jsonnetfmt --string-style d --test goreleaser.jsonnet"
+
+      - name: "Generate Goreleaser config"
+        uses: "docker://ghcr.io/djmattyg007/jsonnet:0.21.0@sha256:4c38928922c5d532bfbc0fe9de1b06a013988f4495f35604a30ed4e96b5c51e5"
+        with:
+          args: "jsonnet --output-file .goreleaser.yaml goreleaser.jsonnet"
+
+      - name: "Goreleaser check"
+        uses: "goreleaser/goreleaser-action@e435ccd777264be153ace6237001ef4d979d3a7a" # v6.4.0
+        with:
+          args: "check"
+
+      - name: "Goreleaser build"
+        uses: "goreleaser/goreleaser-action@e435ccd777264be153ace6237001ef4d979d3a7a" # v6.4.0
+        with:
+          args: "build"

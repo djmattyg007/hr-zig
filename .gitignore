@@ -2,3 +2,8 @@
 .zig-cache/
 
 *.o
+
+/dist/
+
+# Generated from jsonnet config
+/.goreleaser.yaml
