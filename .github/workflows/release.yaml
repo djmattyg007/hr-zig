@@ -23,9 +23,9 @@ jobs:
           version: "0.15.2"
           cache-key: "0.15.2"
 
-      - name: "Install Syft"
-        id: "install-syft"
-        uses: "anchore/sbom-action/download-syft@fbfd9c6c189226748411491745178e0c2017392d" # v0.20.10
+      # - name: "Install Syft"
+      #   id: "install-syft"
+      #   uses: "anchore/sbom-action/download-syft@fbfd9c6c189226748411491745178e0c2017392d" # v0.20.10
 
       - name: "Import GPG key"
         id: "import-gpg"

@@ -31,7 +31,7 @@ local checksum = {
 
 local sbom(syft_cmd="syft") = {
   artifacts: "archive",
-  disable: false,
+  disable: true,
   cmd: syft_cmd,
 };
 
