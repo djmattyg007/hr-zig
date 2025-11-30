@@ -23,6 +23,10 @@ jobs:
           version: "0.15.2"
           cache-key: "0.15.2"
 
+      - name: "Install Syft"
+        id: "install-syft"
+        uses: "anchore/sbom-action/download-syft@fbfd9c6c189226748411491745178e0c2017392d" # v0.20.10
+
       - name: "Import GPG key"
         id: "import-gpg"
         uses: "crazy-max/ghaction-import-gpg@e89d40939c28e39f97cf32126055eeae86ba74ec" # v6.3.0
@@ -33,7 +37,7 @@ jobs:
       - name: "Generate GoReleaser config"
         uses: "docker://ghcr.io/djmattyg007/jsonnet:0.21.0@sha256:4c38928922c5d532bfbc0fe9de1b06a013988f4495f35604a30ed4e96b5c51e5"
         with:
-          args: "jsonnet --output-file .goreleaser.yaml dev/goreleaser.jsonnet"
+          args: 'jsonnet --output-file .goreleaser.yaml dev/goreleaser.jsonnet --tla-str syft_cmd="${{ steps.install-syft.outputs.cmd }}"'
 
       - name: "Generate release notes"
         run: |
