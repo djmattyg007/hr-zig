@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.1.1 - 2025-12-01
+
+- Release workflow fix for generating SBOMs after first test of the process.
+
 ## v1.1.0 - 2025-12-01
 
 - Switch from libc dependency to native Zig dependency for determining terminal
