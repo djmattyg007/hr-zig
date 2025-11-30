@@ -37,7 +37,7 @@ jobs:
       - name: "Generate GoReleaser config"
         uses: "docker://ghcr.io/djmattyg007/jsonnet:0.21.0@sha256:4c38928922c5d532bfbc0fe9de1b06a013988f4495f35604a30ed4e96b5c51e5"
         with:
-          args: 'jsonnet --output-file .goreleaser.yaml dev/goreleaser.jsonnet --tla-str syft_cmd="${{ steps.install-syft.outputs.cmd }}"'
+          args: 'jsonnet --output-file .goreleaser.yaml dev/goreleaser.jsonnet'
 
       - name: "Generate release notes"
         run: |
