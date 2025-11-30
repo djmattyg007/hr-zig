@@ -1,7 +1,9 @@
 name: "Code checks"
 
 on:
-  push: ~
+  push:
+    branches:
+      - "**"
   pull_request: ~
 
 jobs:
