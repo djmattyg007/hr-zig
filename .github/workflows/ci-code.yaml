@@ -52,7 +52,7 @@ jobs:
       - name: "GoReleaser check"
         uses: "goreleaser/goreleaser-action@e435ccd777264be153ace6237001ef4d979d3a7a" # v6.4.0
         with:
-          args: "check"
+          args: "check --verbose"
 
       - name: "Install Zig"
         uses: "mlugg/setup-zig@fa65c4058643678a4e4a9a60513944a7d8d35440" # v2.1.0
@@ -63,4 +63,4 @@ jobs:
       - name: "GoReleaser test build"
         uses: "goreleaser/goreleaser-action@e435ccd777264be153ace6237001ef4d979d3a7a" # v6.4.0
         with:
-          args: "build --snapshot"
+          args: "build --verbose --snapshot"
