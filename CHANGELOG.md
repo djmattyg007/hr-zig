@@ -1,5 +1,10 @@
 # Changelog
 
+## v1.1.2 - 2025-12-01
+
+- Another release workflow adjustment for generating SBOMs after another test of
+  the process.
+
 ## v1.1.1 - 2025-12-01
 
 - Release workflow fix for generating SBOMs after first test of the process.
