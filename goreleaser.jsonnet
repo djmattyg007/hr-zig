@@ -46,6 +46,8 @@ local aur = {
   homepage: homepage,
   description: description,
   private_key: "{{ .Env.AUR_SSH_PRIVATE_KEY }}",
+  provides: ["hr", "hr-zig"],
+  conflicts: ["hr", "hr-zig"],
 };
 
 {
