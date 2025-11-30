@@ -45,6 +45,7 @@ local aur = {
   license: license,
   homepage: homepage,
   description: description,
+  private_key: "{{ .Env.AUR_SSH_PRIVATE_KEY }}",
 };
 
 {
