@@ -81,20 +81,21 @@ def check_for_correct_changelog_entry(tag: str) -> None:
     version_line_start_escaped = re.escape(f"## {tag}")
     version_line_match = re.search(rf"^{version_line_start_escaped} - (?P<date>\d{{4}}-\d{{2}}-\d{{2}})$", changelog, re.MULTILINE)
     if not version_line_match:
-        raise Exception(f"No changelog entry found for {tag}.")
+        print(f"No changelog entry found for {tag}.")
+        sys.exit(1)
 
     changelog_entry_date = version_line_match.group("date")
 
     today = datetime.now(tz=TZ_MEL)
     today_str = today.strftime("%Y-%m-%d")
     if changelog_entry_date != today_str:
-        raise Exception(
-            f"Changelog entry date for {tag} ({changelog_entry_date}) is not today ({today_str}).",
-        )
+        print(f"Changelog entry date for {tag} ({changelog_entry_date}) is not today ({today_str}).")
+        sys.exit(1)
 
     changelog_entry_match = re.search(fr"({version_line_start_escaped} - .*?)(\#\# .*|$)", changelog, re.DOTALL)
     if not changelog_entry_match:
-        raise Exception(f"Full changelog entry not found for {tag}.")
+        print(f"Full changelog entry not found for {tag}.")
+        sys.exit(1)
 
     print("Does this changelog entry look correct?\n")
     print(changelog_entry_match.group(1))
