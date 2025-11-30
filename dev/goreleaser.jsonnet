@@ -29,7 +29,7 @@ local checksum = {
   name_template: "checksums.txt",
 };
 
-local sbom(syft_cmd = "syft") = {
+local sbom(syft_cmd="syft") = {
   artifacts: "archive",
   disable: false,
   cmd: syft_cmd,
@@ -51,7 +51,7 @@ local aur = {
   conflicts: ["hr", "hr-zig"],
 };
 
-function(syft_cmd = "syft") {
+function(syft_cmd="syft") {
   version: 2,
   project_name: "hr-zig",
   builds: [build],
