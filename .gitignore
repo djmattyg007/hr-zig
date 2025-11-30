@@ -7,3 +7,5 @@
 
 # Generated from jsonnet config
 /.goreleaser.yaml
+
+/release-notes.md
