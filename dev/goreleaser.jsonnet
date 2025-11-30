@@ -1,3 +1,4 @@
+local project_name = "hr-zig";
 local maintainers = [
   "Matthew Gamble <git@matthewgamble.net>",
 ];
@@ -42,6 +43,7 @@ local sign = {
 
 local aur = {
   name: "hr-zig-bin",
+  git_url: "https://aur@aur.archlinux.org/" + project_name + "-bin",
   maintainers: maintainers,
   license: license,
   homepage: homepage,
@@ -49,11 +51,12 @@ local aur = {
   private_key: "{{ .Env.AUR_SSH_PRIVATE_KEY }}",
   provides: ["hr", "hr-zig"],
   conflicts: ["hr", "hr-zig"],
+  skip_upload: "auto",
 };
 
 function(syft_cmd="syft") {
   version: 2,
-  project_name: "hr-zig",
+  project_name: project_name,
   builds: [build],
   archives: [archive],
   checksum: checksum,
