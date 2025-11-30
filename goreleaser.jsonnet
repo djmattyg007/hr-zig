@@ -36,6 +36,7 @@ local sbom = {
 
 local sign = {
   artifacts: "all",
+  output: true,
 };
 
 local aur = {
