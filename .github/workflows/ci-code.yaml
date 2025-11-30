@@ -1,4 +1,4 @@
-name: "CI"
+name: "Code checks"
 
 on:
   push: ~

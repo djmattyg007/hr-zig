@@ -1,0 +1,33 @@
+name: "Config checks"
+
+on:
+  push: ~
+  pull_request: ~
+
+jobs:
+  test-config:
+    runs-on: "ubuntu-latest"
+
+    steps:
+      - name: "Checkout repository"
+        uses: "actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3" # v6.0.0
+
+      - name: "Lint config"
+        uses: "docker://ghcr.io/djmattyg007/jsonnet:0.21.0@sha256:4c38928922c5d532bfbc0fe9de1b06a013988f4495f35604a30ed4e96b5c51e5"
+        with:
+          args: "jsonnet-lint goreleaser.jsonnet"
+
+      - name: "Check config formatting"
+        uses: "docker://ghcr.io/djmattyg007/jsonnet:0.21.0@sha256:4c38928922c5d532bfbc0fe9de1b06a013988f4495f35604a30ed4e96b5c51e5"
+        with:
+          args: "jsonnetfmt --string-style d --test goreleaser.jsonnet"
+
+      - name: "Run actionlint"
+        uses: "reviewdog/action-actionlint@437bbe918b0d29544cbf9e8b1d63fe6f4e7a881d" # v1.69.0
+        with:
+          fail_level: "warning"
+
+      - name: "Run gitleaks"
+        uses: "reviewdog/action-gitleaks@2b7b5685e3e3eecddab5d30cfa04f18123031421" # v1.8.0
+        with:
+          fail_level: "warning"
