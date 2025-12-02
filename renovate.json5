@@ -1,19 +1,6 @@
 {
   $schema: "https://docs.renovatebot.com/renovate-schema.json",
   extends: [
-    "config:best-practices",
-    "schedule:weekends",
-    ":semanticCommitsDisabled",
-  ],
-  packageRules: [
-    {
-      matchUpdateTypes: ["minor", "patch", "pin", "digest", "lockFileMaintenance"],
-      automerge: true,
-    },
-    {
-      groupName: "github-actions",
-      matchManagers: ["github-actions"],
-      separateMajorMinor: false,
-    },
+    "local>djmattyg007/renovate-config:recommended.json5",
   ],
 }
