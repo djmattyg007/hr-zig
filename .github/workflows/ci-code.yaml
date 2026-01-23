@@ -23,10 +23,10 @@ jobs:
 
     steps:
       - name: "Checkout"
-        uses: "actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8" # v6.0.1
+        uses: "actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd" # v6.0.2
 
       - name: "Install Zig"
-        uses: "mlugg/setup-zig@e7d1537c378b83b8049f65dda471d87a2f7b2df2" # v2.2.0
+        uses: "mlugg/setup-zig@d1434d08867e3ee9daa34448df10607b98908d29" # v2.2.1
         with:
           version: "${{ matrix.zig-version }}"
           cache-key: "${{ matrix.zig-version }}"
@@ -42,7 +42,7 @@ jobs:
 
     steps:
       - name: "Checkout repository"
-        uses: "actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8" # v6.0.1
+        uses: "actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd" # v6.0.2
 
       - name: "Generate GoReleaser config"
         uses: "docker://ghcr.io/djmattyg007/jsonnet:0.21.0@sha256:011e4286c47cbac9193a16d5986ddd65279e538742c4830b0baf2cf072f0fb41"
@@ -55,7 +55,7 @@ jobs:
           args: "check --verbose"
 
       - name: "Install Zig"
-        uses: "mlugg/setup-zig@e7d1537c378b83b8049f65dda471d87a2f7b2df2" # v2.2.0
+        uses: "mlugg/setup-zig@d1434d08867e3ee9daa34448df10607b98908d29" # v2.2.1
         with:
           version: "0.15.2"
           cache-key: "0.15.2"
