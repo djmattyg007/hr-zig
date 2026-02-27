@@ -15,12 +15,12 @@ jobs:
         uses: "actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd" # v6.0.2
 
       - name: "Lint config"
-        uses: "docker://ghcr.io/djmattyg007/jsonnet:0.21.0@sha256:f33c4f7ce672f876a4a8094b56c0afb69d09233235d5d090e34bf0c9444695d8"
+        uses: "docker://ghcr.io/djmattyg007/jsonnet:0.21.0@sha256:bc368a508fae96361f6f3bf4e58ea19d598687abec2548fa117ad8259c228ad2"
         with:
           args: "jsonnet-lint dev/goreleaser.jsonnet"
 
       - name: "Check config formatting"
-        uses: "docker://ghcr.io/djmattyg007/jsonnet:0.21.0@sha256:f33c4f7ce672f876a4a8094b56c0afb69d09233235d5d090e34bf0c9444695d8"
+        uses: "docker://ghcr.io/djmattyg007/jsonnet:0.21.0@sha256:bc368a508fae96361f6f3bf4e58ea19d598687abec2548fa117ad8259c228ad2"
         with:
           args: "jsonnetfmt --string-style d --test dev/goreleaser.jsonnet"
 
