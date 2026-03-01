@@ -35,7 +35,7 @@ jobs:
           passphrase: "${{ secrets.GPG_PASSPHRASE }}"
 
       - name: "Generate GoReleaser config"
-        uses: "docker://ghcr.io/djmattyg007/jsonnet:0.21.0@sha256:bc368a508fae96361f6f3bf4e58ea19d598687abec2548fa117ad8259c228ad2"
+        uses: "docker://ghcr.io/djmattyg007/jsonnet:0.21.0@sha256:55eba292a1e8f522adc7c46246a1fa5086f7b810e94841703693602dcd65d242"
         with:
           args: 'jsonnet --output-file .goreleaser.yaml dev/goreleaser.jsonnet'
 
