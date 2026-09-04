@@ -13,7 +13,7 @@ jobs:
 
     steps:
       - name: "Checkout repository"
-        uses: "actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd" # v6.0.2
+        uses: "actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1" # v7.0.1
         with:
           fetch-depth: 0
 
@@ -35,7 +35,7 @@ jobs:
           passphrase: "${{ secrets.GPG_PASSPHRASE }}"
 
       - name: "Generate GoReleaser config"
-        uses: "docker://ghcr.io/djmattyg007/jsonnet:0.22.0@sha256:452373f7ca0f7d4e9b7dd1967be198d78344c7bddfc16446c345f8fb2b2b52b8"
+        uses: "docker://ghcr.io/djmattyg007/jsonnet:0.22.0@sha256:b57f11f79b2f02de20d92abe1111610bba45434cf5d9092213d2b4f551a9cf8e"
         with:
           args: 'jsonnet --output-file .goreleaser.yaml dev/goreleaser.jsonnet'
 
@@ -44,7 +44,7 @@ jobs:
           perl -s -0777 -p -e 's/.*(## $tag - .*?)(## .*|$)/$1/s' -- -tag="${{ github.ref_name }}" CHANGELOG.md | tail -n+3 | tee release-notes.md
 
       - name: "Run GoReleaser"
-        uses: "goreleaser/goreleaser-action@ec59f474b9834571250b370d4735c50f8e2d1e29" # v7.0.0
+        uses: "goreleaser/goreleaser-action@f06c13b6b1a9625abc9e6e439d9c05a8f2190e94" # v7.2.3
         with:
           args: "release --verbose --clean --release-notes=release-notes.md"
         env:
