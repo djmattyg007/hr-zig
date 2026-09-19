@@ -45,7 +45,7 @@ jobs:
         uses: "actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd" # v6.0.2
 
       - name: "Generate GoReleaser config"
-        uses: "docker://ghcr.io/djmattyg007/jsonnet:0.22.0@sha256:452373f7ca0f7d4e9b7dd1967be198d78344c7bddfc16446c345f8fb2b2b52b8"
+        uses: "docker://ghcr.io/djmattyg007/jsonnet:0.22.0@sha256:5b7a360a1e86a3c55b4e58b653b64d6745eed1d1cc3fd8d3d44100570589fd93"
         with:
           args: "jsonnet --output-file .goreleaser.yaml dev/goreleaser.jsonnet"
 
